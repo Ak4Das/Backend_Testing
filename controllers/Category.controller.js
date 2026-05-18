@@ -1,11 +1,22 @@
-import SeedCategories from "../seeders/Category.seeder.js"
+// import SeedCategories from "../seeders/Category.seeder.js"
+import { fetchAllCategories } from "../services/Categories.service.js"
 
-export const putAllCategories = async (req, res) => {
+export const getAllCategories = async (req, res) => {
   try {
-    const result = await SeedCategories()
+    const result = await fetchAllCategories()
     res.status(200)
     res.json(result)
   } catch (error) {
     throw error
   }
 }
+
+// export const putAllCategories = async (req, res) => {
+//   try {
+//     const result = await SeedCategories()
+//     res.status(200)
+//     res.json(result)
+//   } catch (error) {
+//     throw error
+//   }
+// }

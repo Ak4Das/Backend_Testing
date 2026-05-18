@@ -9,6 +9,15 @@ export const getAllItems = async () => {
   }
 }
 
+export const getItemsByUserId = async (userId) => {
+  try {
+    const allItems = await CreateOrderModel.find({ userId })
+    return allItems
+  } catch (error) {
+    throw error
+  }
+}
+
 export const saveNewItem = async (newItem) => {
   try {
     const NewItem = new CreateOrderModel(newItem)
@@ -29,6 +38,21 @@ export const findItemByIdAndUpdate = async (id, dataToUpdate) => {
       },
     )
     return item
+  } catch (error) {
+    throw error
+  }
+}
+
+export const findCreateOrderByUserIdAndUpdate = async (id, dataToUpdate) => {
+  try {
+    const createOrder = await CreateOrderModel.findOneAndUpdate(
+      { userId: id },
+      dataToUpdate,
+      {
+        new: true,
+      },
+    )
+    return createOrder
   } catch (error) {
     throw error
   }
@@ -57,6 +81,15 @@ export const deleteManyItems = async () => {
 export const findItemByIdAndDelete = async (id) => {
   try {
     const item = await CreateOrderModel.findOneAndDelete({ id: id })
+    return item
+  } catch (error) {
+    throw error
+  }
+}
+
+export const findByUserIdAndDelete = async (id) => {
+  try {
+    const item = await CreateOrderModel.findOneAndDelete({ userId: id })
     return item
   } catch (error) {
     throw error
