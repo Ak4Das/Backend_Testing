@@ -9,6 +9,24 @@ export const getAllOrders = async () => {
   }
 }
 
+export const getOrderByUserId = async (id) => {
+  try {
+    const allOrders = await OrderModel.find({ userId: id })
+    return allOrders
+  } catch (error) {
+    throw error
+  }
+}
+
+export const getOrderByOrderId = async (id) => {
+  try {
+    const allOrders = await OrderModel.find({ id })
+    return allOrders
+  } catch (error) {
+    throw error
+  }
+}
+
 export const saveNewOrder = async (newOrder) => {
   try {
     const NewOrder = new OrderModel(newOrder)

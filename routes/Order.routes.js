@@ -1,5 +1,7 @@
 import {
   fetchAllOrders,
+  fetchOrderByUserId,
+  fetchOrderByOrderId,
   postNewOrder,
   fetchOrderByIdAndUpdate,
   fetchOrderByIdAndPushProductInItem,
@@ -12,6 +14,10 @@ const app = express()
 app.use(express.json())
 
 app.get("/", fetchAllOrders)
+
+app.get("/user/:id", fetchOrderByUserId)
+
+app.get("/:id", fetchOrderByOrderId)
 
 app.post("/saveOrder", postNewOrder)
 

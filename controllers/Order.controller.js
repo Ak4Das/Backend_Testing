@@ -1,5 +1,7 @@
 import {
   getAllOrders,
+  getOrderByUserId,
+  getOrderByOrderId,
   saveNewOrder,
   findOrderByIdAndUpdate,
   findOrderByIdAndPushProductInItem,
@@ -12,6 +14,26 @@ export const fetchAllOrders = async (req, res) => {
     const allOrders = await getAllOrders()
     res.status(200)
     res.json(allOrders)
+  } catch (error) {
+    throw error
+  }
+}
+
+export const fetchOrderByUserId = async (req, res) => {
+  try {
+    const allOrders = await getOrderByUserId(req.params.id)
+    res.status(200)
+    res.json(allOrders)
+  } catch (error) {
+    throw error
+  }
+}
+
+export const fetchOrderByOrderId = async (req, res) => {
+  try {
+    const order = await getOrderByOrderId(req.params.id)
+    res.status(200)
+    res.json(order)
   } catch (error) {
     throw error
   }
