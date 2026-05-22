@@ -18,24 +18,6 @@ export const getUserById = async (id) => {
   }
 }
 
-export const getUserByPassword = async (password) => {
-  try {
-    const user = await UserModel.findOne({ password: password })
-    return user
-  } catch (error) {
-    throw error
-  }
-}
-
-export const getUserByEmail = async (email) => {
-  try {
-    const user = await UserModel.findOne({ email: email })
-    return user
-  } catch (error) {
-    throw error
-  }
-}
-
 export const saveNewUser = async (newUser) => {
   try {
     const NewUser = new UserModel(newUser)
@@ -96,15 +78,6 @@ export const findByIdAndUpdateWishlistItems = async (id, dataToUpdate) => {
         new: true,
       },
     )
-    return user
-  } catch (error) {
-    throw error
-  }
-}
-
-export const findByIdAndDelete = async (id) => {
-  try {
-    const user = await UserModel.findByIdAndDelete(id)
     return user
   } catch (error) {
     throw error
