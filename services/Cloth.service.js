@@ -18,6 +18,49 @@ export const getClothById = async (id) => {
   }
 }
 
+export const getNewArriveCloths = async () => {
+  try {
+    const cloth = await ClothModel.find({ newArrival: true })
+    return cloth
+  } catch (error) {
+    throw error
+  }
+}
+
+export const getDistinctCommonCategories = async () => {
+  try {
+    const categories = await ClothModel.distinct("commonCategory")
+    return categories
+  } catch (error) {
+    throw error
+  }
+}
+
+export const getOfferOnACategory = async (commonCategory) => {
+  try {
+    const cloth = await ClothModel.find({
+      commonCategory,
+      $expr: {
+        $gt: [
+          {
+            $toInt: {
+              $replaceOne: {
+                input: "$offer",
+                find: "%",
+                replacement: "",
+              },
+            },
+          },
+          0,
+        ],
+      },
+    })
+    return cloth
+  } catch (error) {
+    throw error
+  }
+}
+
 export const getClothsByCategory = async (category) => {
   try {
     const cloths = await ClothModel.find({ commonCategory: category })
@@ -60,6 +103,15 @@ export const getClothsByGender = async (gender) => {
 export const getClothsByMainCategory = async (mainCategory) => {
   try {
     const cloths = await ClothModel.find({ mainCategory: mainCategory })
+    return cloths
+  } catch (error) {
+    throw error
+  }
+}
+
+export const getClothsByCommonCategory = async (commonCategory) => {
+  try {
+    const cloths = await ClothModel.find({ commonCategory })
     return cloths
   } catch (error) {
     throw error

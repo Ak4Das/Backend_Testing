@@ -14,6 +14,10 @@ import {
   postMultipleCloths,
   fetchByIdAndUpdate,
   fetchByIdAndDelete,
+  fetchOfferOnACategory,
+  fetchClothsByCommonCategory,
+  fetchNewArriveCloths,
+  fetchDistinctCommonCategories
 } from "../controllers/Cloth.controller.js"
 
 import express from "express"
@@ -24,6 +28,12 @@ app.get("/", fetchAllCloths)
 
 app.get("/:id", fetchClothsById)
 
+app.get("/newArrive/true", fetchNewArriveCloths)
+
+app.get("/categories/distinct", fetchDistinctCommonCategories)
+
+app.get("/offer/:commonCategory", fetchOfferOnACategory)
+
 app.get("/category/:category", fetchClothsByCategory)
 
 app.get("/rating/:rating", fetchClothsByRating)
@@ -33,6 +43,8 @@ app.get("/category&rating/:category/:rating", fetchClothsByCategoryAndRating)
 app.get("/gender/:gender", fetchClothsByGender)
 
 app.get("/mainCategory/:mainCategory", fetchClothsByMainCategory)
+
+app.get("/commonCategory/:commonCategory", fetchClothsByCommonCategory)
 
 app.get("/material/:material", fetchClothsByMaterial)
 
