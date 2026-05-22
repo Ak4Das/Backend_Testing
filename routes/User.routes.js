@@ -12,27 +12,26 @@ import {
 } from "../controllers/User.controller.js"
 
 import express from "express"
-const app = express()
-app.use(express.json())
+const router = express.Router()
 
-app.get("/", fetchAllUsers)
+router.get("/", fetchAllUsers)
 
-app.get("/:id", fetchUserById)
+router.get("/:id", fetchUserById)
 
-app.get("/password/:password", fetchUserByPassword)
+router.get("/password/:password", fetchUserByPassword)
 
-app.get("/email/:email", fetchUserByEmail)
+router.get("/email/:email", fetchUserByEmail)
 
-app.post("/saveUser", postNewUser)
+router.post("/saveUser", postNewUser)
 
-app.post("/updateUser/:id", fetchByIdAndUpdate)
+router.post("/updateUser/:id", fetchByIdAndUpdate)
 
-app.post("/updateUserAddress/:id", fetchByIdAndUpdateAddress)
+router.post("/updateUserAddress/:id", fetchByIdAndUpdateAddress)
 
-app.post("/updateCartItems/:id", fetchByIdAndUpdateCartItems)
+router.post("/updateCartItems/:id", fetchByIdAndUpdateCartItems)
 
-app.post("/updateWishlistItems/:id", fetchByIdAndUpdateWishlistItems)
+router.post("/updateWishlistItems/:id", fetchByIdAndUpdateWishlistItems)
 
-app.delete("/deleteUser/:id", fetchByIdAndDelete)
+router.delete("/deleteUser/:id", fetchByIdAndDelete)
 
-export default app
+export default router

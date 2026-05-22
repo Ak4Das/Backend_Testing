@@ -5,13 +5,12 @@ import {
 } from "../controllers/Category.controller.js"
 
 import express from "express"
-const app = express()
-app.use(express.json())
+const router = express.Router()
 
-app.get("/", getAllCategories)
+router.get("/", getAllCategories)
 
-app.get("/:category", getCategory)
+router.get("/:category", getCategory)
 
-// app.put("/seedCategories", putAllCategories)
+// router.put("/seedCategories", putAllCategories)
 
-export default app
+export default router

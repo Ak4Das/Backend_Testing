@@ -11,25 +11,24 @@ import {
 } from "../controllers/CreateOrder.controller.js"
 
 import express from "express"
-const app = express()
-app.use(express.json())
+const router = express.Router()
 
-app.get("/", fetchAllItems)
+router.get("/", fetchAllItems)
 
-app.get("/:id", fetchItemsByUserId)
+router.get("/:id", fetchItemsByUserId)
 
-app.post("/saveItem", postNewItem)
+router.post("/saveItem", postNewItem)
 
-app.patch("/update/:id", fetchItemByIdAndUpdate)
+router.patch("/update/:id", fetchItemByIdAndUpdate)
 
-app.patch("/updateItems/:id", fetchCreateOrderByUserIdAndUpdate)
+router.patch("/updateItems/:id", fetchCreateOrderByUserIdAndUpdate)
 
-app.put("/updateItems", updateItems)
+router.put("/updateItems", updateItems)
 
-app.delete("/deleteMany", deleteMany)
+router.delete("/deleteMany", deleteMany)
 
-app.delete("/delete/:id", fetchItemByIdAndDelete)
+router.delete("/delete/:id", fetchItemByIdAndDelete)
 
-app.delete("/delete/userId/:id", fetchByUserIdAndDelete)
+router.delete("/delete/userId/:id", fetchByUserIdAndDelete)
 
-export default app
+export default router
