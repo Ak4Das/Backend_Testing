@@ -4,8 +4,6 @@ import {
   getOrderByOrderId,
   saveNewOrder,
   findOrderByIdAndUpdate,
-  findOrderByIdAndPushProductInItem,
-  findOrderByIdAndRemoveProductFromItem,
   findOrderByIdAndDelete,
 } from "../services/Order.service.js"
 
@@ -52,32 +50,6 @@ export const postNewOrder = async (req, res) => {
 export const fetchOrderByIdAndUpdate = async (req, res) => {
   try {
     const updatedOrder = await findOrderByIdAndUpdate(req.params.id, req.body)
-    res.status(200)
-    res.json(updatedOrder)
-  } catch (error) {
-    throw error
-  }
-}
-
-export const fetchOrderByIdAndPushProductInItem = async (req, res) => {
-  try {
-    const updatedOrder = await findOrderByIdAndPushProductInItem(
-      req.params.id,
-      req.body,
-    )
-    res.status(200)
-    res.json(updatedOrder)
-  } catch (error) {
-    throw error
-  }
-}
-
-export const fetchOrderByIdAndRemoveProductFromItem = async (req, res) => {
-  try {
-    const updatedOrder = await findOrderByIdAndRemoveProductFromItem(
-      req.params.id,
-      req.body.id,
-    )
     res.status(200)
     res.json(updatedOrder)
   } catch (error) {

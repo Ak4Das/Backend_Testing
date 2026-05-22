@@ -48,42 +48,6 @@ export const findOrderByIdAndUpdate = async (id, dataToUpdate) => {
   }
 }
 
-export const findOrderByIdAndPushProductInItem = async (id, dataToUpdate) => {
-  try {
-    const order = await OrderModel.findOneAndUpdate(
-      { id: id },
-      {
-        $push: { item: dataToUpdate },
-      },
-      {
-        new: true,
-      },
-    )
-    return order
-  } catch (error) {
-    throw error
-  }
-}
-
-export const findOrderByIdAndRemoveProductFromItem = async (id, itemId) => {
-  try {
-    const order = await OrderModel.findOneAndUpdate(
-      { id: id },
-      {
-        $pull: {
-          item: { id: itemId },
-        },
-      },
-      {
-        new: true,
-      },
-    )
-    return order
-  } catch (error) {
-    throw error
-  }
-}
-
 export const findOrderByIdAndDelete = async (id) => {
   try {
     const order = await OrderModel.findOneAndDelete({ id: id })
