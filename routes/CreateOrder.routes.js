@@ -3,10 +3,7 @@ import {
   fetchItemsByUserId,
   fetchCreateOrderByUserIdAndUpdate,
   postNewItem,
-  fetchItemByIdAndUpdate,
-  updateItems,
   deleteMany,
-  fetchItemByIdAndDelete,
   fetchByUserIdAndDelete,
 } from "../controllers/CreateOrder.controller.js"
 
@@ -19,15 +16,9 @@ router.get("/:id", fetchItemsByUserId)
 
 router.post("/saveItem", postNewItem)
 
-router.patch("/update/:id", fetchItemByIdAndUpdate)
-
 router.patch("/updateItems/:id", fetchCreateOrderByUserIdAndUpdate)
 
-router.put("/updateItems", updateItems)
-
 router.delete("/deleteMany", deleteMany)
-
-router.delete("/delete/:id", fetchItemByIdAndDelete)
 
 router.delete("/delete/userId/:id", fetchByUserIdAndDelete)
 

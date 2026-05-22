@@ -2,11 +2,8 @@ import {
   getAllItems,
   getItemsByUserId,
   saveNewItem,
-  findItemByIdAndUpdate,
   findCreateOrderByUserIdAndUpdate,
-  updateItemsInCreateOrder,
   deleteManyItems,
-  findItemByIdAndDelete,
   findByUserIdAndDelete,
 } from "../services/CreateOrder.service.js"
 
@@ -40,31 +37,14 @@ export const postNewItem = async (req, res) => {
   }
 }
 
-export const fetchItemByIdAndUpdate = async (req, res) => {
-  try {
-    const updatedItem = await findItemByIdAndUpdate(req.params.id, req.body)
-    res.status(200)
-    res.json(updatedItem)
-  } catch (error) {
-    throw error
-  }
-}
-
 export const fetchCreateOrderByUserIdAndUpdate = async (req, res) => {
   try {
-    const updatedItem = await findCreateOrderByUserIdAndUpdate(req.params.id, req.body)
+    const updatedItem = await findCreateOrderByUserIdAndUpdate(
+      req.params.id,
+      req.body,
+    )
     res.status(200)
     res.json(updatedItem)
-  } catch (error) {
-    throw error
-  }
-}
-
-export const updateItems = async (req, res) => {
-  try {
-    const updatedItems = await updateItemsInCreateOrder(req.body)
-    res.status(200)
-    res.json(updatedItems)
   } catch (error) {
     throw error
   }
@@ -75,16 +55,6 @@ export const deleteMany = async (req, res) => {
     const data = await deleteManyItems()
     res.status(200)
     res.json(data)
-  } catch (error) {
-    throw error
-  }
-}
-
-export const fetchItemByIdAndDelete = async (req, res) => {
-  try {
-    const deletedItem = await findItemByIdAndDelete(req.params.id)
-    res.status(200)
-    res.json(deletedItem)
   } catch (error) {
     throw error
   }

@@ -27,22 +27,6 @@ export const saveNewItem = async (newItem) => {
     throw error
   }
 }
-
-export const findItemByIdAndUpdate = async (id, dataToUpdate) => {
-  try {
-    const item = await CreateOrderModel.findOneAndUpdate(
-      { id: id },
-      dataToUpdate,
-      {
-        new: true,
-      },
-    )
-    return item
-  } catch (error) {
-    throw error
-  }
-}
-
 export const findCreateOrderByUserIdAndUpdate = async (id, dataToUpdate) => {
   try {
     const createOrder = await CreateOrderModel.findOneAndUpdate(
@@ -58,30 +42,10 @@ export const findCreateOrderByUserIdAndUpdate = async (id, dataToUpdate) => {
   }
 }
 
-export const updateItemsInCreateOrder = async (itemsData) => {
-  try {
-    const a = await CreateOrderModel.deleteMany({})
-    console.log(a)
-    const result = await CreateOrderModel.insertMany(itemsData)
-    return result
-  } catch (error) {
-    throw error
-  }
-}
-
 export const deleteManyItems = async () => {
   try {
     const deleteData = await CreateOrderModel.deleteMany({})
     return deleteData
-  } catch (error) {
-    throw error
-  }
-}
-
-export const findItemByIdAndDelete = async (id) => {
-  try {
-    const item = await CreateOrderModel.findOneAndDelete({ id: id })
-    return item
   } catch (error) {
     throw error
   }
