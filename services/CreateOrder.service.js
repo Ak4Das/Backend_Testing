@@ -49,16 +49,6 @@ export const findCreateOrderByUserIdAndUpdate = async (req, res) => {
   }
 }
 
-export const deleteManyItems = async (req, res) => {
-  try {
-    const deleteData = await CreateOrderModel.deleteMany({})
-    res.status(200)
-    res.json(deleteData)
-  } catch (error) {
-    throw error
-  }
-}
-
 export const findByUserIdAndDelete = async (req, res) => {
   try {
     const item = await CreateOrderModel.findOneAndDelete({

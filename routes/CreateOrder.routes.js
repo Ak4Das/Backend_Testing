@@ -18,8 +18,6 @@ router.post("/saveItem", postNewItem)
 
 router.patch("/updateItems/:id", fetchCreateOrderByUserIdAndUpdate)
 
-router.delete("/deleteMany", deleteMany)
-
 router.delete("/delete/userId/:id", fetchByUserIdAndDelete)
 
 export default router
