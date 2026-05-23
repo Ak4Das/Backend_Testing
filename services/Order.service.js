@@ -20,7 +20,7 @@ export const getOrderByUserId = async (req, res) => {
   }
 }
 
-export const getOrderByOrderId = async (id) => {
+export const getOrderByOrderId = async (req, res) => {
   try {
     const order = await OrderModel.find({ id: req.params.id })
     res.status(200)
