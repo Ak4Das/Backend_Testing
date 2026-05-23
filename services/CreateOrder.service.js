@@ -1,34 +1,40 @@
 import CreateOrderModel from "../models/CreateOrder.model.js"
 
-export const getAllItems = async () => {
+export const getAllItems = async (req, res) => {
   try {
     const allItems = await CreateOrderModel.find()
-    return allItems
+    res.status(200)
+    res.json(allItems)
   } catch (error) {
     throw error
   }
 }
 
-export const getItemsByUserId = async (userId) => {
+export const getItemsByUserId = async (req, res) => {
   try {
-    const allItems = await CreateOrderModel.find({ userId })
-    return allItems
+    const allItems = await CreateOrderModel.find({ userId: req.params.id })
+    res.status(200)
+    res.json(allItems)
   } catch (error) {
     throw error
   }
 }
 
-export const saveNewItem = async (newItem) => {
+export const saveNewItem = async (req, res) => {
   try {
-    const NewItem = new CreateOrderModel(newItem)
+    const NewItem = new CreateOrderModel(req.body)
     await NewItem.save()
-    return NewItem
+    res.status(200)
+    res.json(NewItem)
   } catch (error) {
     throw error
   }
 }
-export const findCreateOrderByUserIdAndUpdate = async (id, dataToUpdate) => {
+
+export const findCreateOrderByUserIdAndUpdate = async (req, res) => {
   try {
+    const id = req.params.id
+    const dataToUpdate = req.body
     const createOrder = await CreateOrderModel.findOneAndUpdate(
       { userId: id },
       dataToUpdate,
@@ -36,25 +42,30 @@ export const findCreateOrderByUserIdAndUpdate = async (id, dataToUpdate) => {
         new: true,
       },
     )
-    return createOrder
+    res.status(200)
+    res.json(createOrder)
   } catch (error) {
     throw error
   }
 }
 
-export const deleteManyItems = async () => {
+export const deleteManyItems = async (req, res) => {
   try {
     const deleteData = await CreateOrderModel.deleteMany({})
-    return deleteData
+    res.status(200)
+    res.json(deleteData)
   } catch (error) {
     throw error
   }
 }
 
-export const findByUserIdAndDelete = async (id) => {
+export const findByUserIdAndDelete = async (req, res) => {
   try {
-    const item = await CreateOrderModel.findOneAndDelete({ userId: id })
-    return item
+    const item = await CreateOrderModel.findOneAndDelete({
+      userId: req.params.id,
+    })
+    res.status(200)
+    res.json(item)
   } catch (error) {
     throw error
   }
