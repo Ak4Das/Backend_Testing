@@ -21,9 +21,6 @@ export const getOrderByUserId = async (req, res) => {
       throw new BadRequestError("Not mentioned user id on API.")
     }
     const allOrders = await OrderModel.find({ userId: req.params.id })
-    if (allOrders.length === 0) {
-      throw new NotFoundError("No order found.")
-    }
     res.status(200)
     res.json(allOrders)
   } catch (error) {
@@ -37,9 +34,6 @@ export const getOrderByOrderId = async (req, res) => {
       throw new BadRequestError("Not mentioned order id on API.")
     }
     const order = await OrderModel.find({ id: req.params.id })
-    if (order.length === 0) {
-      throw new NotFoundError("No order found.")
-    }
     res.status(200)
     res.json(order)
   } catch (error) {

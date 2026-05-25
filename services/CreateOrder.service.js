@@ -21,9 +21,6 @@ export const getItemsByUserId = async (req, res) => {
       throw new BadRequestError("Not mentioned user id on API.")
     }
     const allItems = await CreateOrderModel.find({ userId: req.params.id })
-    if (allItems.length === 0) {
-      throw new NotFoundError("No create Order found.")
-    }
     res.status(200)
     res.json(allItems)
   } catch (error) {
